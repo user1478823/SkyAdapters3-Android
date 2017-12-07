@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="sky_txt_drawer" type="id">sky_txt_drawer</item>
+    <item name="sky_img_drawer" type="id">sky_img_drawer</item>
+    <item name="sky_rv_drawer" type="id">sky_rv_drawer</item>
+    <item name="sky_toolbar" type="id">sky_toolbar</item>
+    <item name="sky_drawer_layout" type="id">sky_drawer_layout</item>
+</resources>

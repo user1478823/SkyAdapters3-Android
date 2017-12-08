@@ -2,6 +2,7 @@ package com.example.skyadapters3;
 
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 
 /**
@@ -89,6 +91,11 @@ public class ToolbarAdapter {
 
     public ToolbarAdapter setToolbarTextColor(int color) {
         toolbar.setTitleTextColor(color);
+        return this;
+    }
+
+    public ToolbarAdapter setToolbarTypeFace(Typeface tf) {
+        ((TextView)toolbar.getChildAt(0)).setTypeface(tf);
         return this;
     }
 }

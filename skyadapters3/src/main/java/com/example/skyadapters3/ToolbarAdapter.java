@@ -38,7 +38,7 @@ public class ToolbarAdapter {
         return this;
     }
 
-    public ToolbarAdapter buildToolbarWithCustomBackIcon(int iconID) {
+    public ToolbarAdapter buildToolbarWithCustomBackIcon(int toolbarID, int iconID) {
         toolbar.setNavigationIcon(iconID);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

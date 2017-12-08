@@ -40,6 +40,7 @@ public class ToolbarAdapter {
 
     public ToolbarAdapter buildToolbarWithCustomBackIcon(int toolbarID, int iconID) {
         toolbar = (Toolbar) a.findViewById(toolbarID);
+        a.setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(iconID);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

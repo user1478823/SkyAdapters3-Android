@@ -1,6 +1,7 @@
 package com.example.skyadapters3;
 
 
+import android.graphics.Color;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ public class ToolbarAdapter {
         this.a = a;
     }
 
-    public ToolbarAdapter buildToolbar(int id) {
+    public ToolbarAdapter buildToolbarWithHomeUp(int id) {
         toolbar = (Toolbar) a.findViewById(id);
         a.setSupportActionBar(toolbar);
         a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,11 +38,22 @@ public class ToolbarAdapter {
         return this;
     }
 
-    public ActionBarDrawerToggle buildToolbarForMainActivity(Class[] activitiesToLaunch,
-                                                             int menuID,
-                                                             int customLayoutID,
-                                                             RecyclerView.LayoutManager layoutManager,
-                                                             int drawerItemColor){
+    public ToolbarAdapter buildToolbarWithCustomBackIcon(int iconID) {
+        toolbar.setNavigationIcon(iconID);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a.finish();
+            }
+        });
+        return this;
+    }
+
+    public ActionBarDrawerToggle buildToolbarWithNavDrawer(Class[] activitiesToLaunch,
+                                                           int menuID,
+                                                           int customLayoutID,
+                                                           RecyclerView.LayoutManager layoutManager,
+                                                           int drawerItemColor){
 
         Menu menu = new PopupMenu(a, null).getMenu();
         a.getMenuInflater().inflate(menuID, menu);
@@ -70,6 +82,11 @@ public class ToolbarAdapter {
 
     public ToolbarAdapter setToolbarColor(int color) {
         toolbar.setBackgroundColor(color);
+        return this;
+    }
+
+    public ToolbarAdapter setToolbarTextColor(int color) {
+        toolbar.setTitleTextColor(color);
         return this;
     }
 }

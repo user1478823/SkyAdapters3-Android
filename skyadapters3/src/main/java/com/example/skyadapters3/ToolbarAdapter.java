@@ -27,6 +27,13 @@ public class ToolbarAdapter {
         this.a = a;
     }
 
+    public ToolbarAdapter buildToolbar(int toolbarID, boolean showTitle) {
+        Toolbar toolbar = (Toolbar) a.findViewById(toolbarID);
+        a.setSupportActionBar(toolbar);
+        a.getSupportActionBar().setDisplayShowTitleEnabled(showTitle);
+        return this;
+    }
+
     public ToolbarAdapter buildToolbarWithHomeUp(int id) {
         toolbar = (Toolbar) a.findViewById(id);
         a.setSupportActionBar(toolbar);

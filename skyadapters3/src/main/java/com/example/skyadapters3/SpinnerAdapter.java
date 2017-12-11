@@ -26,7 +26,7 @@ public class SpinnerAdapter {
 
     public SpinnerAdapter buildSpinner(int spinnerID, ArrayList<String> spinnerItems, Integer customSpinnerLayout,
                                        AdapterView.OnItemSelectedListener listener) {
-        Spinner spinner = (Spinner) a.findViewById(spinnerID);
+        spinner = (Spinner) a.findViewById(spinnerID);
         int layout = android.R.layout.activity_list_item;
         if (customSpinnerLayout != null) {
             layout = customSpinnerLayout;

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public abstract class RvActivity extends AppCompatActivity {
 
+    RvAdapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,8 @@ public abstract class RvActivity extends AppCompatActivity {
                 .sixFinnalOnBind(rvOnBind());*/
         RecyclerView rv = (RecyclerView) findViewById(initRv());
         rv.setLayoutManager(rvLayoutManager());
-        rv.setAdapter(new RvAdapter(rvSize(), holderIDS(), rvCustomRow(), rvOnBind()));
+        adapter = new RvAdapter(rvSize(), holderIDS(), rvCustomRow(), rvOnBind());
+        rv.setAdapter(adapter);
     }
 
     public abstract int getView();
@@ -35,4 +38,8 @@ public abstract class RvActivity extends AppCompatActivity {
     public abstract ArrayList<Integer> holderIDS();
     public abstract RecyclerView.LayoutManager rvLayoutManager();
     public abstract RvAdapter.RvInterface rvOnBind();
+
+    public void updateRV() {
+        adapter.notifyDataSetChanged();
+    }
 }

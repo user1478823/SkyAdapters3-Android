@@ -13,13 +13,13 @@ import java.util.ArrayList;
  * Created by ttlnisoffice on 12/20/17.
  */
 
-public abstract class RvActivityWithBackToggle extends RvActivity {
+public abstract class RvActivityWithCustomBackToggle extends RvActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this);
-        toolbarAdapter.buildToolbarWithHomeUp(getToolbarID());
+        toolbarAdapter.buildToolbarWithCustomBackIcon(getToolbarID(), getToolbarIcon());
         if (getToolbarTitle() != null) {
             toolbarAdapter.setToolbarTitle(getToolbarTitle());
         }
@@ -33,8 +33,9 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
             toolbarAdapter.setToolbarTypeFace(getToolbarTypeFace());
         }
     }
-
+    
     public abstract int getToolbarID();
+    public abstract int getToolbarIcon();
 
     @Override
     public int getView() {
@@ -83,4 +84,5 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
     public abstract Integer  getToolbarColor();
     public abstract Typeface getToolbarTypeFace();
     public abstract Integer  getToolbarTextColor();
+
 }

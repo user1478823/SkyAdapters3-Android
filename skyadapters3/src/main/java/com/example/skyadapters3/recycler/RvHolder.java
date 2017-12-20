@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class RvHolder extends RecyclerView.ViewHolder {
 
-    View[] views;
+    public View[] views;
 
     public RvHolder(View itemView, ArrayList<Integer> ids) {
         super(itemView);

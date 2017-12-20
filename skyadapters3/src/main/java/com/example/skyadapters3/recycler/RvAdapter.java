@@ -35,7 +35,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return rvSize;
     }
 
-    interface RvInterface {
-        void onBindViewHolder(RecyclerView.ViewHolder holder, int position);
+    public interface RvInterface {
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position);
     }
 }

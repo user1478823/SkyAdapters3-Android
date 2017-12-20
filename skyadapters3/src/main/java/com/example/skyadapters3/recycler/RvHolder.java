@@ -15,6 +15,9 @@ public class RvHolder extends RecyclerView.ViewHolder {
 
     public RvHolder(View itemView, ArrayList<Integer> ids) {
         super(itemView);
+
+        views = new View[ids.size()];
+
         for (int i = 0; i < ids.size(); i++) {
             views[i] = itemView.findViewById(ids.get(i));
         }

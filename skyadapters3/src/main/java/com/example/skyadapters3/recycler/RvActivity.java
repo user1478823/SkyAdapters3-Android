@@ -16,12 +16,15 @@ public abstract class RvActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new RvManager(this).oneInitRv(initRv())
+        /*new RvManager(this).oneInitRv(initRv())
                 .twoCustomRow(rvCustomRow())
                 .threeRvSize(rvSize())
                 .fourHolderIDS(holderIDS())
                 .fiveLayoutManager(rvLayoutManager())
-                .sixFinnalOnBind(rvOnBind());
+                .sixFinnalOnBind(rvOnBind());*/
+        RecyclerView rv = (RecyclerView) findViewById(initRv());
+        rv.setLayoutManager(rvLayoutManager());
+        rv.setAdapter(new RvAdapter(rvSize(), holderIDS(), rvCustomRow(), rvOnBind()));
     }
 
     public abstract int initRv();
@@ -30,4 +33,5 @@ public abstract class RvActivity extends AppCompatActivity {
     public abstract ArrayList<Integer> holderIDS();
     public abstract RecyclerView.LayoutManager rvLayoutManager();
     public abstract RvAdapter.RvInterface rvOnBind();
+    public abstract ArrayList<String> updateRV();
 }

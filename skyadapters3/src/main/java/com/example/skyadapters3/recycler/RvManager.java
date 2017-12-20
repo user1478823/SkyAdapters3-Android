@@ -27,7 +27,7 @@ public class RvManager {
         return this;
     }
 
-    public RvManager twoCustomRow() {
+    public RvManager twoCustomRow(int customRow) {
         this.customRow = customRow;
         return this;
     }
@@ -47,7 +47,7 @@ public class RvManager {
         return this;
     }
 
-    public void sixOnBind(RvAdapter.RvInterface rvInterface) {
+    public void sixFinnalOnBind(RvAdapter.RvInterface rvInterface) {
         rv.setAdapter(new RvAdapter(rvSize, ids, customRow, rvInterface));
     }
 }

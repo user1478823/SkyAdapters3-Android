@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class RvAdapter extends RecyclerView.Adapter<RvHolder> {
 
     private int rvSize;
-    ArrayList<Integer> ids;
+    private ArrayList<Integer> ids;
     private int customRow;
     private RvInterface rvInterface;
 

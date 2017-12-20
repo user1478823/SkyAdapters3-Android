@@ -16,6 +16,7 @@ public abstract class RvActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getView());
         /*new RvManager(this).oneInitRv(initRv())
                 .twoCustomRow(rvCustomRow())
                 .threeRvSize(rvSize())
@@ -27,6 +28,7 @@ public abstract class RvActivity extends AppCompatActivity {
         rv.setAdapter(new RvAdapter(rvSize(), holderIDS(), rvCustomRow(), rvOnBind()));
     }
 
+    public abstract int getView();
     public abstract int initRv();
     public abstract int rvCustomRow();
     public abstract int rvSize();

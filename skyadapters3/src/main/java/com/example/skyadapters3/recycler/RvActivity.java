@@ -19,12 +19,6 @@ public abstract class RvActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getView());
-        /*new RvManager(this).oneInitRv(initRv())
-                .twoCustomRow(rvCustomRow())
-                .threeRvSize(rvSize())
-                .fourHolderIDS(holderIDS())
-                .fiveLayoutManager(rvLayoutManager())
-                .sixFinnalOnBind(rvOnBind());*/
         RecyclerView rv = (RecyclerView) findViewById(initRv());
         rv.setLayoutManager(rvLayoutManager());
         adapter = new RvAdapter(rvSize(), holderIDS(), rvCustomRow(), rvOnBind());

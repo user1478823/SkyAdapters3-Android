@@ -1,11 +1,7 @@
 package com.example.skyadapters3.recycler;
 
 import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-
-import com.example.skyadapters3.ToolbarAdapter;
 
 import java.util.ArrayList;
 
@@ -13,29 +9,8 @@ import java.util.ArrayList;
  * Created by ttlnisoffice on 12/20/17.
  */
 
-public abstract class RvActivityWithCustomBackToggle extends RvActivity {
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this);
-        toolbarAdapter.buildToolbarWithCustomBackIcon(getToolbarID(), getToolbarIcon());
-        if (getToolbarTitle() != null) {
-            toolbarAdapter.setToolbarTitle(getToolbarTitle());
-        }
-        if (getToolbarColor() != null) {
-            toolbarAdapter.setToolbarColor(getToolbarColor());
-        }
-        if (getToolbarTextColor() != null) {
-            toolbarAdapter.setToolbarTextColor(getToolbarTextColor());
-        }
-        if (getToolbarTypeFace() != null) {
-            toolbarAdapter.setToolbarTypeFace(getToolbarTypeFace());
-        }
-    }
-
+public abstract class RvActivityWithSpinner extends RvActivity {
     public abstract int getToolbarID();
-    public abstract int getToolbarIcon();
 
     @Override
     public int getView() {
@@ -84,5 +59,4 @@ public abstract class RvActivityWithCustomBackToggle extends RvActivity {
     public abstract Integer  getToolbarColor();
     public abstract Typeface getToolbarTypeFace();
     public abstract Integer  getToolbarTextColor();
-
 }

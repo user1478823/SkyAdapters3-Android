@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -92,8 +93,10 @@ public class ToolbarAdapter {
         if (toolbar != null) {
             a.setSupportActionBar(toolbar);
             a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } else {
+            Toast.makeText(a, "Error: Toolbar is null", Toast.LENGTH_LONG).show();
         }
-        
+
 
 
         toggleBtn.syncState();

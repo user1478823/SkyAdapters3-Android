@@ -65,23 +65,23 @@ public class ToolbarAdapter {
         return this;
     }
 
-    public ActionBarDrawerToggle buildToolbarWithNavDrawer(int linearLayoutID,
+    public ActionBarDrawerToggle buildToolbarWithNavDrawer(int vgID,
                                                            Class[] activitiesToLaunch,
                                                            int menuID,
                                                            int customLayoutID,
                                                            RecyclerView.LayoutManager layoutManager,
                                                            int drawerItemColor){
 
-        ViewGroup linearLayout = (ViewGroup) a.getLayoutInflater().inflate(linearLayoutID,null);
+        ViewGroup vg = (ViewGroup) a.getLayoutInflater().inflate(vgID,null);
 
         Toolbar toolbar           = null;
         DrawerLayout drawerLayout = null;
-        for (int i = 0; i < linearLayout.getChildCount(); i++) {
-            if (linearLayout.getChildAt(i) instanceof Toolbar) {
-                toolbar = (Toolbar) a.findViewById(linearLayout.getChildAt(i).getId());
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            if (vg.getChildAt(i) instanceof Toolbar) {
+                toolbar = (Toolbar) a.findViewById(vg.getChildAt(i).getId());
             }
-            if (linearLayout.getChildAt(i) instanceof  DrawerLayout) {
-                drawerLayout = (DrawerLayout) a.findViewById(linearLayout.getChildAt(i).getId());
+            if (vg.getChildAt(i) instanceof  DrawerLayout) {
+                drawerLayout = (DrawerLayout) a.findViewById(vg.getChildAt(i).getId());
             }
         }
 

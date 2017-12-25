@@ -41,8 +41,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
-            //txt = (TextView) itemView.findViewById(R.id.sky_txt_drawer);
-            //img = (ImageView) itemView.findViewById(R.id.sky_img_drawer);
+            ViewGroup vg = (ViewGroup) a.getLayoutInflater().inflate(customLayoutID,null);
             for (int i = 0; i < vg.getChildCount(); i++) {
                 if (vg.getChildAt(i) instanceof TextView) {
                     txt = (TextView) itemView.findViewById(vg.getChildAt(i).getId());
@@ -51,6 +50,16 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder> {
                     img = (ImageView) itemView.findViewById(vg.getChildAt(i).getId());
                 }
             }
+            //txt = (TextView) itemView.findViewById(R.id.sky_txt_drawer);
+            //img = (ImageView) itemView.findViewById(R.id.sky_img_drawer);
+            /*for (int i = 0; i < vg.getChildCount(); i++) {
+                if (vg.getChildAt(i) instanceof TextView) {
+                    txt = (TextView) itemView.findViewById(vg.getChildAt(i).getId());
+                }
+                if (vg.getChildAt(i) instanceof ImageView) {
+                    img = (ImageView) itemView.findViewById(vg.getChildAt(i).getId());
+                }
+            }*/
         }
     }
 

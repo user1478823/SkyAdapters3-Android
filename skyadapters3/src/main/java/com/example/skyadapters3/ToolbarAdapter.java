@@ -89,8 +89,11 @@ public class ToolbarAdapter {
         drawerLayout.addDrawerListener(toggleBtn);
 
 //        Toolbar toolbar = (Toolbar) a.findViewById(R.id.sky_toolbar);
-        a.setSupportActionBar(toolbar);
-        a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (toolbar != null) {
+            a.setSupportActionBar(toolbar);
+            a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        
 
 
         toggleBtn.syncState();

@@ -1,10 +1,12 @@
 package com.example.skyadapters3;
 
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -93,20 +95,41 @@ public class ToolbarAdapter {
             //DrawerLayout drawerLayout = (DrawerLayout) a.findViewById(R.id.sky_drawer_layout);
             toggleBtn = new ActionBarDrawerToggle(a, drawerLayout,
                     R.string.drawer_open, R.string.drawer_closed);
-            drawerLayout.addDrawerListener(toggleBtn);            
+            drawerLayout.addDrawerListener(toggleBtn);
+            toggleBtn.syncState();
         } else {
-            Toast.makeText(a, "Error: DrawerLayout is null, did you add DrawerLayout in xml?", Toast.LENGTH_LONG).show();
+            //Toast.makeText(a, "Error: DrawerLayout is null, did you add DrawerLayout in xml?", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(a);
+            alertBuilder.setTitle("Error");
+            alertBuilder.setMessage("DrawerLayout is null, did you add DrawerLayout in xml or did you give it id?");
+            alertBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+
+            AlertDialog alert = alertBuilder.create();
+            alert.show();
         }
-        
-        
+
+
         if (toolbar != null) {
             a.setSupportActionBar(toolbar);
             a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } else {
-            Toast.makeText(a, "Error: Toolbar is null, did you add toolbar in xml?", Toast.LENGTH_LONG).show();
+            //Toast.makeText(a, "Error: Toolbar is null, did you add toolbar in xml?", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(a);
+            alertBuilder.setTitle("Error");
+            alertBuilder.setMessage("Toolbar is null, did you add Toolbar in xml or did you give it id?");
+            alertBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+
+            AlertDialog alert = alertBuilder.create();
+            alert.show();
         }
-        
-        toggleBtn.syncState();
 
         return toggleBtn;
     }

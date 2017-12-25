@@ -92,13 +92,11 @@ public class ToolbarAdapter {
         
         ActionBarDrawerToggle toggleBtn = null;
         if (drawerLayout != null) {
-            //DrawerLayout drawerLayout = (DrawerLayout) a.findViewById(R.id.sky_drawer_layout);
             toggleBtn = new ActionBarDrawerToggle(a, drawerLayout,
                     R.string.drawer_open, R.string.drawer_closed);
             drawerLayout.addDrawerListener(toggleBtn);
             toggleBtn.syncState();
         } else {
-            //Toast.makeText(a, "Error: DrawerLayout is null, did you add DrawerLayout in xml?", Toast.LENGTH_LONG).show();
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(a);
             alertBuilder.setTitle("Error");
             alertBuilder.setMessage("DrawerLayout is null, did you add DrawerLayout in xml or did you give it id?");
@@ -111,7 +109,6 @@ public class ToolbarAdapter {
             AlertDialog alert = alertBuilder.create();
             alert.show();
         }
-
 
         if (toolbar != null) {
             a.setSupportActionBar(toolbar);

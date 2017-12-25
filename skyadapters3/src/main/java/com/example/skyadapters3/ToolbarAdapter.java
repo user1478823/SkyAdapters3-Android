@@ -114,7 +114,6 @@ public class ToolbarAdapter {
             a.setSupportActionBar(toolbar);
             a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } else {
-            //Toast.makeText(a, "Error: Toolbar is null, did you add toolbar in xml?", Toast.LENGTH_LONG).show();
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(a);
             alertBuilder.setTitle("Error");
             alertBuilder.setMessage("Toolbar is null, did you add Toolbar in xml or did you give it id?");

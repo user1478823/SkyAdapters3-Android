@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.example.skyadapters3.ToolbarAdapter;
+import com.example.skyadapters3.ToolbarCustomizer;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
             );
         } else {
             toolbarAdapter.buildToolbarWithHomeUp(getToolbarID());
-            if (getToolbarTitle() != null) {
+            /*if (getToolbarTitle() != null) {
                 toolbarAdapter.setToolbarTitle(getToolbarTitle());
             }
             if (getToolbarColor() != null) {
@@ -45,7 +46,13 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
             }
             if (getToolbarTypeFace() != null) {
                 toolbarAdapter.setToolbarTypeFace(getToolbarTypeFace());
-            }
+            }*/
+        }
+        if (customizeToolbar() != null) {
+            toolbarAdapter.setToolbarTitle(customizeToolbar().setToolbarTitle());
+            toolbarAdapter.setToolbarColor(customizeToolbar().setToolbarColor());
+            toolbarAdapter.setToolbarTextColor(customizeToolbar().setToolbarTextColor());
+            toolbarAdapter.setToolbarTypeFace(customizeToolbar().setToolbarTypeFace());
         }
     }
 
@@ -100,10 +107,12 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     public abstract ArrayList<Integer> getHolderIDS();
     public abstract RecyclerView.LayoutManager getRvLayoutManager();
 
-    public abstract String   getToolbarTitle();
+    public abstract ToolbarCustomizer customizeToolbar();
+
+    /*public abstract String   getToolbarTitle();
     public abstract Integer  getToolbarColor();
     public abstract Typeface getToolbarTypeFace();
-    public abstract Integer  getToolbarTextColor();
+    public abstract Integer  getToolbarTextColor();*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

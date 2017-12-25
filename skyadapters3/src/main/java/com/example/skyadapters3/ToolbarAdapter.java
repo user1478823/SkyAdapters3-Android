@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -60,11 +62,21 @@ public class ToolbarAdapter {
         return this;
     }
 
-    public ActionBarDrawerToggle buildToolbarWithNavDrawer(Class[] activitiesToLaunch,
+    public ActionBarDrawerToggle buildToolbarWithNavDrawer(int linearLayoutID,
+                                                           Class[] activitiesToLaunch,
                                                            int menuID,
                                                            int customLayoutID,
                                                            RecyclerView.LayoutManager layoutManager,
                                                            int drawerItemColor){
+
+        ViewGroup linearLayout = (ViewGroup) a.getLayoutInflater().inflate(linearLayoutID,null);
+
+        Toolbar toolbar = null;
+        for (int i = 0; i < linearLayout.getChildCount(); i++) {
+            if (linearLayout.getChildAt(i) instanceof Toolbar) {
+                toolbar = (Toolbar) a.findViewById(linearLayout.getChildAt(i).getId());
+            }
+        }
 
         Menu menu = new PopupMenu(a, null).getMenu();
         a.getMenuInflater().inflate(menuID, menu);
@@ -76,7 +88,7 @@ public class ToolbarAdapter {
                 R.string.drawer_open, R.string.drawer_closed);
         drawerLayout.addDrawerListener(toggleBtn);
 
-        Toolbar toolbar = (Toolbar) a.findViewById(R.id.sky_toolbar);
+//        Toolbar toolbar = (Toolbar) a.findViewById(R.id.sky_toolbar);
         a.setSupportActionBar(toolbar);
         a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

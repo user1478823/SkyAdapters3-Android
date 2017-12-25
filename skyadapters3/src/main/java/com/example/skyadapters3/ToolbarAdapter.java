@@ -72,10 +72,14 @@ public class ToolbarAdapter {
 
         ViewGroup linearLayout = (ViewGroup) a.getLayoutInflater().inflate(linearLayoutID,null);
 
-        Toolbar toolbar = null;
+        Toolbar toolbar           = null;
+        DrawerLayout drawerLayout = null;
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
             if (linearLayout.getChildAt(i) instanceof Toolbar) {
                 toolbar = (Toolbar) a.findViewById(linearLayout.getChildAt(i).getId());
+            }
+            if (linearLayout.getChildAt(i) instanceof  DrawerLayout) {
+                drawerLayout = (DrawerLayout) a.findViewById(linearLayout.getChildAt(i).getId());
             }
         }
 
@@ -83,22 +87,25 @@ public class ToolbarAdapter {
         a.getMenuInflater().inflate(menuID, menu);
 
         rvAdapter = new RvAdapter(a, menu, activitiesToLaunch, customLayoutID, layoutManager, drawerItemColor);
-
-        DrawerLayout drawerLayout = (DrawerLayout) a.findViewById(R.id.sky_drawer_layout);
-        ActionBarDrawerToggle toggleBtn = new ActionBarDrawerToggle(a, drawerLayout,
-                R.string.drawer_open, R.string.drawer_closed);
-        drawerLayout.addDrawerListener(toggleBtn);
-
-//        Toolbar toolbar = (Toolbar) a.findViewById(R.id.sky_toolbar);
+        
+        ActionBarDrawerToggle toggleBtn = null;
+        if (drawerLayout != null) {
+            //DrawerLayout drawerLayout = (DrawerLayout) a.findViewById(R.id.sky_drawer_layout);
+            toggleBtn = new ActionBarDrawerToggle(a, drawerLayout,
+                    R.string.drawer_open, R.string.drawer_closed);
+            drawerLayout.addDrawerListener(toggleBtn);            
+        } else {
+            Toast.makeText(a, "Error: DrawerLayout is null, did you add DrawerLayout in xml?", Toast.LENGTH_LONG).show();
+        }
+        
+        
         if (toolbar != null) {
             a.setSupportActionBar(toolbar);
             a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } else {
-            Toast.makeText(a, "Error: Toolbar is null", Toast.LENGTH_LONG).show();
+            Toast.makeText(a, "Error: Toolbar is null, did you add toolbar in xml?", Toast.LENGTH_LONG).show();
         }
-
-
-
+        
         toggleBtn.syncState();
 
         return toggleBtn;

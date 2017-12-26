@@ -35,24 +35,20 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
             );
         } else {
             toolbarAdapter.buildToolbarWithHomeUp(getToolbarID());
-            /*if (getToolbarTitle() != null) {
-                toolbarAdapter.setToolbarTitle(getToolbarTitle());
-            }
-            if (getToolbarColor() != null) {
-                toolbarAdapter.setToolbarColor(getToolbarColor());
-            }
-            if (getToolbarTextColor() != null) {
-                toolbarAdapter.setToolbarTextColor(getToolbarTextColor());
-            }
-            if (getToolbarTypeFace() != null) {
-                toolbarAdapter.setToolbarTypeFace(getToolbarTypeFace());
-            }*/
         }
         if (customizeToolbar() != null) {
-            toolbarAdapter.setToolbarTitle(customizeToolbar().setToolbarTitle());
-            toolbarAdapter.setToolbarColor(customizeToolbar().setToolbarColor());
-            toolbarAdapter.setToolbarTextColor(customizeToolbar().setToolbarTextColor());
-            toolbarAdapter.setToolbarTypeFace(customizeToolbar().setToolbarTypeFace());
+            if (customizeToolbar().setToolbarTitle() != null) {
+                toolbarAdapter.setToolbarTitle(customizeToolbar().setToolbarTitle());
+            }
+            if (customizeToolbar().setToolbarColor() != null) {
+                toolbarAdapter.setToolbarColor(customizeToolbar().setToolbarColor());
+            }
+            if (customizeToolbar().setToolbarTextColor() != null) {
+                toolbarAdapter.setToolbarTextColor(customizeToolbar().setToolbarTextColor());
+            }
+            if (customizeToolbar().setToolbarTypeFace() != null) {
+                toolbarAdapter.setToolbarTypeFace(customizeToolbar().setToolbarTypeFace());
+            }
         }
     }
 
@@ -108,11 +104,6 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     public abstract RecyclerView.LayoutManager getRvLayoutManager();
 
     public abstract ToolbarCustomizer customizeToolbar();
-
-    /*public abstract String   getToolbarTitle();
-    public abstract Integer  getToolbarColor();
-    public abstract Typeface getToolbarTypeFace();
-    public abstract Integer  getToolbarTextColor();*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

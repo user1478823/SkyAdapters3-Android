@@ -25,22 +25,52 @@ import android.widget.Toast;
 public class ToolbarAdapter {
 
     private AppCompatActivity a;
-    private RvAdapter rvAdapter;
     private Toolbar toolbar = null;
+    private DrawerLayout drawerLayout = null;
 
-    public ToolbarAdapter(AppCompatActivity a) {
+    public ToolbarAdapter(AppCompatActivity a, int layoutID) {
         this.a = a;
+
+        ViewGroup vg = (ViewGroup) a.getLayoutInflater().inflate(layoutID,null);
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            if (vg.getChildAt(i) instanceof Toolbar) {
+                toolbar = (Toolbar) a.findViewById(vg.getChildAt(i).getId());
+            }
+            if (vg.getChildAt(i) instanceof  DrawerLayout) {
+                drawerLayout = (DrawerLayout) a.findViewById(vg.getChildAt(i).getId());
+            }
+
+        }
+
+        if (toolbar == null) {
+            showErrorWarning("Toolbar is null, did you add Toolbar in xml or did you give it id?");
+        }
+        if (drawerLayout == null) {
+            showErrorWarning("DrawerLayout is null, did you add DrawerLayout in xml or did you give it id?");
+        }
     }
 
-    public ToolbarAdapter buildToolbar(int toolbarID, boolean showTitle) {
-        Toolbar toolbar = (Toolbar) a.findViewById(toolbarID);
+    private void showErrorWarning(String message) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(a);
+        alertBuilder.setTitle("Error");
+        alertBuilder.setMessage(message);
+        alertBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        AlertDialog alert = alertBuilder.create();
+        alert.show();
+    }
+
+    public ToolbarAdapter buildToolbar(boolean showTitle) {
         a.setSupportActionBar(toolbar);
         a.getSupportActionBar().setDisplayShowTitleEnabled(showTitle);
         return this;
     }
 
-    public ToolbarAdapter buildToolbarWithHomeUp(int id) {
-        toolbar = (Toolbar) a.findViewById(id);
+    public ToolbarAdapter buildToolbarWithHomeUp() {
         a.setSupportActionBar(toolbar);
         a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -52,8 +82,7 @@ public class ToolbarAdapter {
         return this;
     }
 
-    public ToolbarAdapter buildToolbarWithCustomBackIcon(int toolbarID, int iconID) {
-        toolbar = (Toolbar) a.findViewById(toolbarID);
+    public ToolbarAdapter buildToolbarWithCustomBackIcon(int iconID) {
         a.setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(iconID);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -72,22 +101,10 @@ public class ToolbarAdapter {
                                                            RecyclerView.LayoutManager layoutManager,
                                                            int drawerItemColor){
 
-        ViewGroup vg = (ViewGroup) a.getLayoutInflater().inflate(vgID,null);
-
-        DrawerLayout drawerLayout = null;
-        for (int i = 0; i < vg.getChildCount(); i++) {
-            if (vg.getChildAt(i) instanceof Toolbar) {
-                toolbar = (Toolbar) a.findViewById(vg.getChildAt(i).getId());
-            }
-            if (vg.getChildAt(i) instanceof  DrawerLayout) {
-                drawerLayout = (DrawerLayout) a.findViewById(vg.getChildAt(i).getId());
-            }
-        }
-
         Menu menu = new PopupMenu(a, null).getMenu();
         a.getMenuInflater().inflate(menuID, menu);
 
-        rvAdapter = new RvAdapter(a, menu, activitiesToLaunch, customLayoutID, layoutManager, drawerItemColor);
+        RvAdapter rvAdapter = new RvAdapter(a, menu, activitiesToLaunch, customLayoutID, layoutManager, drawerItemColor);
         
         ActionBarDrawerToggle toggleBtn = null;
         if (drawerLayout != null) {
@@ -95,35 +112,11 @@ public class ToolbarAdapter {
                     R.string.drawer_open, R.string.drawer_closed);
             drawerLayout.addDrawerListener(toggleBtn);
             toggleBtn.syncState();
-        } else {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(a);
-            alertBuilder.setTitle("Error");
-            alertBuilder.setMessage("DrawerLayout is null, did you add DrawerLayout in xml or did you give it id?");
-            alertBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                }
-            });
-
-            AlertDialog alert = alertBuilder.create();
-            alert.show();
         }
 
         if (toolbar != null) {
             a.setSupportActionBar(toolbar);
             a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } else {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(a);
-            alertBuilder.setTitle("Error");
-            alertBuilder.setMessage("Toolbar is null, did you add Toolbar in xml or did you give it id?");
-            alertBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                }
-            });
-
-            AlertDialog alert = alertBuilder.create();
-            alert.show();
         }
 
         return toggleBtn;

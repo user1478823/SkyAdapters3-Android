@@ -35,6 +35,8 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
             }
         }
 
+        setupRV();
+
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         if (this.getClass().getSimpleName().contains("MainActivity")) {
             toggle = toolbarAdapter.buildToolbarWithNavDrawer(

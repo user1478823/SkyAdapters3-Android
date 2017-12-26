@@ -21,14 +21,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder> {
 
 
     public RvAdapter(final Activity a, Menu menu, Class[] activities, int customLayoutID,
-                     RecyclerView.LayoutManager layoutManager, int color) {
+                     RecyclerView.LayoutManager layoutManager, int color, Integer drawerRvID) {
         this.a              = a;
         this.menu           = menu;
         this.activities     = activities;
         this.customLayoutID = customLayoutID;
         this.color          = color;
 
-        RecyclerView rv = (RecyclerView) a.findViewById(R.id.sky_rv_drawer);
+        RecyclerView rv = (RecyclerView) a.findViewById(drawerRvID);
         rv.setLayoutManager(layoutManager);
         rv.setAdapter(this);
     }

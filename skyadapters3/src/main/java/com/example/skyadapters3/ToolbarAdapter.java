@@ -99,12 +99,13 @@ public class ToolbarAdapter {
                                                            int menuID,
                                                            int customLayoutID,
                                                            RecyclerView.LayoutManager layoutManager,
-                                                           int drawerItemColor){
+                                                           int drawerItemColor, Integer drawerRvID){
 
         Menu menu = new PopupMenu(a, null).getMenu();
         a.getMenuInflater().inflate(menuID, menu);
 
-        RvAdapter rvAdapter = new RvAdapter(a, menu, activitiesToLaunch, customLayoutID, layoutManager, drawerItemColor);
+        RvAdapter rvAdapter = new RvAdapter(a, menu,
+                activitiesToLaunch, customLayoutID, layoutManager, drawerItemColor, drawerRvID);
         
         ActionBarDrawerToggle toggleBtn = null;
         if (drawerLayout != null) {

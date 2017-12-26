@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import com.example.skyadapters3.ToolbarAdapter;
 import com.example.skyadapters3.ToolbarCustomizer;
@@ -19,10 +21,20 @@ import java.util.ArrayList;
 public abstract class RvActivityWithNavDrawer extends RvActivity {
 
     private ActionBarDrawerToggle toggle;
+    private ArrayList<Integer> rvs;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
+        ArrayList<Integer> rvs = new ArrayList<>();
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            if (vg.getChildAt(i) instanceof RecyclerView) {
+                rvs.add(vg.getChildAt(i).getId());
+            }
+        }
+
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         if (this.getClass().getSimpleName().contains("MainActivity")) {
             toggle = toolbarAdapter.buildToolbarWithNavDrawer(
@@ -31,7 +43,8 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
                     getDrawerMenuID(),
                     getDrawerCustomLayoutID(),
                     getDrawerLayoutManager(),
-                    getDrawerItemColor()
+                    getDrawerItemColor(),
+                    rvs.get(1)
             );
         } else {
             toolbarAdapter.buildToolbarWithHomeUp();
@@ -58,8 +71,6 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     public abstract RecyclerView.LayoutManager getDrawerLayoutManager();
     public abstract int getDrawerItemColor();
 
-    public abstract int getToolbarID();
-
     @Override
     public int getView() {
         return getActivityView();
@@ -67,7 +78,7 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
 
     @Override
     public int initRv() {
-        return getRvID();
+        return rvs.get(0);
     }
 
     @Override
@@ -97,7 +108,6 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
 
     public abstract RvAdapter.RvInterface getRvOnBind();
     public abstract int getActivityView();
-    public abstract int getRvID();
     public abstract int getRvCustomRow();
     public abstract int getRvSize();
     public abstract ArrayList<Integer> getHolderIDS();

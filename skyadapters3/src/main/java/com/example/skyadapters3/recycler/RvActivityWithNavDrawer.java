@@ -46,19 +46,15 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
         setupRV();
 
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
-        if (this.getClass().getSimpleName().contains("MainActivity")) {
-            toggle = toolbarAdapter.buildToolbarWithNavDrawer(
-                    getActivityView(),
-                    getDrawerActivitiesToLaunch(),
-                    drawerMenuID_drawerCustomLayoutID_drawerItemColor()[0],
-                    drawerMenuID_drawerCustomLayoutID_drawerItemColor()[1],
-                    getDrawerLayoutManager(),
-                    drawerMenuID_drawerCustomLayoutID_drawerItemColor()[2],
-                    rvs.get(1)
-            );
-        } else {
-            toolbarAdapter.buildToolbarWithHomeUp();
-        }
+        toggle = toolbarAdapter.buildToolbarWithNavDrawer(
+                getActivityView(),
+                getDrawerActivitiesToLaunch(),
+                drawerMenuID_drawerCustomLayoutID_drawerItemColor()[0],
+                drawerMenuID_drawerCustomLayoutID_drawerItemColor()[1],
+                getDrawerLayoutManager(),
+                drawerMenuID_drawerCustomLayoutID_drawerItemColor()[2],
+                rvs.get(1));
+
         if (customizeToolbar() != null) {
             if (customizeToolbar().setToolbarTitle() != null) {
                 toolbarAdapter.setToolbarTitle(customizeToolbar().setToolbarTitle());

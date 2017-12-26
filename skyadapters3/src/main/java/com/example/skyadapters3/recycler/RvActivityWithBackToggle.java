@@ -33,9 +33,9 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
         if (getToolbarTypeFace() != null) {
             toolbarAdapter.setToolbarTypeFace(getToolbarTypeFace());
         }
-    }
 
-    public abstract int getToolbarID();
+        setupRV();
+    }
 
     @Override
     public int getView() {

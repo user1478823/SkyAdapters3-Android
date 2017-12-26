@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ttlnisoffice on 12/19/17.
@@ -13,11 +14,11 @@ import java.util.ArrayList;
 public class RvAdapter extends RecyclerView.Adapter<RvHolder> {
 
     private int rvSize;
-    private ArrayList<Integer> ids;
+    private List<Integer> ids;
     private int customRow;
     private RvInterface rvInterface;
 
-    public RvAdapter(int rvSize, ArrayList<Integer> ids, int customRow, RvInterface rvInterface) {
+    public RvAdapter(int rvSize, List<Integer> ids, int customRow, RvInterface rvInterface) {
         this.rvSize = rvSize;
         this.ids = ids;
         this.customRow = customRow;

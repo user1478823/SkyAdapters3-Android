@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ttlnisoffice on 12/19/17.
@@ -13,7 +14,7 @@ public class RvHolder extends RecyclerView.ViewHolder {
 
     public View[] views;
 
-    public RvHolder(View itemView, ArrayList<Integer> ids) {
+    public RvHolder(View itemView, List<Integer> ids) {
         super(itemView);
 
         views = new View[ids.size()];

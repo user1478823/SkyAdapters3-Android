@@ -50,10 +50,10 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
             toggle = toolbarAdapter.buildToolbarWithNavDrawer(
                     getActivityView(),
                     getDrawerActivitiesToLaunch(),
-                    getDrawerMenuID(),
-                    getDrawerCustomLayoutID(),
+                    drawerMenuID_drawerCustomLayoutID_drawerItemColor()[0],
+                    drawerMenuID_drawerCustomLayoutID_drawerItemColor()[1],
                     getDrawerLayoutManager(),
-                    getDrawerItemColor(),
+                    drawerMenuID_drawerCustomLayoutID_drawerItemColor()[2],
                     rvs.get(1)
             );
         } else {
@@ -79,10 +79,13 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     public abstract int getActivityView();
 
     public abstract Class[] getDrawerActivitiesToLaunch();
-    public abstract int getDrawerMenuID();
-    public abstract int getDrawerCustomLayoutID();
+    public abstract Integer[] drawerMenuID_drawerCustomLayoutID_drawerItemColor();
     public abstract RecyclerView.LayoutManager getDrawerLayoutManager();
-    public abstract int getDrawerItemColor();
+
+
+    /*public abstract int getDrawerMenuID();
+    public abstract int getDrawerCustomLayoutID();
+    public abstract int getDrawerItemColor();*/
 
     @Override
     public int getView() {
@@ -93,8 +96,6 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     public int initRv() {
         return rvs.get(0);
     }
-
-
 
     @Override
     public int rvCustomRow() {

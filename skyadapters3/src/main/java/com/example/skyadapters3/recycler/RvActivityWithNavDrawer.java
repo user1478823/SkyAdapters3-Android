@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
+import com.example.skyadapters3.R;
 import com.example.skyadapters3.ToolbarAdapter;
 import com.example.skyadapters3.ToolbarCustomizer;
 
@@ -33,14 +34,14 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
         DrawerLayout drawerLayout = null;
         for (int i = 0; i < vg.getChildCount(); i++) {
             if (vg.getChildAt(i) instanceof DrawerLayout) {
-                rvs.add(vg.getChildAt(i).getId());
+                drawerLayout = (DrawerLayout) findViewById(vg.getChildAt(i).getId());
             }
         }
 
         rvs = new ArrayList<>();
         for (int i = 0; i < drawerLayout.getChildCount(); i++) {
-            if (vg.getChildAt(i) instanceof RecyclerView) {
-                rvs.add(vg.getChildAt(i).getId());
+            if (drawerLayout.getChildAt(i) instanceof RecyclerView) {
+                rvs.add(drawerLayout.getChildAt(i).getId());
             }
         }
 

@@ -18,8 +18,8 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this);
-        toolbarAdapter.buildToolbarWithHomeUp(getToolbarID());
+        ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
+        toolbarAdapter.buildToolbarWithHomeUp();
         if (getToolbarTitle() != null) {
             toolbarAdapter.setToolbarTitle(getToolbarTitle());
         }

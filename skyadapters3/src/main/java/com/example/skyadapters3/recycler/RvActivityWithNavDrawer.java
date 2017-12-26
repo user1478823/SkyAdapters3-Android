@@ -23,7 +23,7 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this);
+        ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         if (this.getClass().getSimpleName().contains("MainActivity")) {
             toggle = toolbarAdapter.buildToolbarWithNavDrawer(
                     getActivityView(),
@@ -34,7 +34,7 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
                     getDrawerItemColor()
             );
         } else {
-            toolbarAdapter.buildToolbarWithHomeUp(getToolbarID());
+            toolbarAdapter.buildToolbarWithHomeUp();
         }
         if (customizeToolbar() != null) {
             if (customizeToolbar().setToolbarTitle() != null) {

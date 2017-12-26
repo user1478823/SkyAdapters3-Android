@@ -77,6 +77,9 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
         }
     }
 
+
+    public abstract int getActivityView();
+
     public abstract Class[] getDrawerActivitiesToLaunch();
     public abstract int getDrawerMenuID();
     public abstract int getDrawerCustomLayoutID();
@@ -93,19 +96,22 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
         return rvs.get(0);
     }
 
+
+
     @Override
     public int rvCustomRow() {
-        return getRvCustomRow();
+        return rvCustomRow_rvSize_holderIDS().get(0);
     }
 
     @Override
     public int rvSize() {
-        return getRvSize();
+        return rvCustomRow_rvSize_holderIDS().get(1);
     }
 
     @Override
     public ArrayList<Integer> holderIDS() {
-        return getHolderIDS();
+        return (ArrayList<Integer>) rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size());
+
     }
 
     @Override
@@ -119,11 +125,8 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     }
 
     public abstract RvAdapter.RvInterface getRvOnBind();
-    public abstract int getActivityView();
-    public abstract int getRvCustomRow();
-    public abstract int getRvSize();
-    public abstract ArrayList<Integer> getHolderIDS();
     public abstract RecyclerView.LayoutManager getRvLayoutManager();
+    public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();
 

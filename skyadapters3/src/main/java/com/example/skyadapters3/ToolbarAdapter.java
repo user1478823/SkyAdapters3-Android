@@ -26,7 +26,7 @@ public class ToolbarAdapter {
 
     private AppCompatActivity a;
     private RvAdapter rvAdapter;
-    private Toolbar toolbar;
+    private Toolbar toolbar = null;
 
     public ToolbarAdapter(AppCompatActivity a) {
         this.a = a;
@@ -74,7 +74,6 @@ public class ToolbarAdapter {
 
         ViewGroup vg = (ViewGroup) a.getLayoutInflater().inflate(vgID,null);
 
-        Toolbar toolbar           = null;
         DrawerLayout drawerLayout = null;
         for (int i = 0; i < vg.getChildCount(); i++) {
             if (vg.getChildAt(i) instanceof Toolbar) {

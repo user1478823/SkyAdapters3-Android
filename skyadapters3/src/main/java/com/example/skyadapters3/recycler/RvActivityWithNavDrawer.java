@@ -3,6 +3,7 @@ package com.example.skyadapters3.recycler;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -28,8 +29,16 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
         super.onCreate(savedInstanceState);
 
         ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
-        rvs = new ArrayList<>();
+
+        DrawerLayout drawerLayout = null;
         for (int i = 0; i < vg.getChildCount(); i++) {
+            if (vg.getChildAt(i) instanceof DrawerLayout) {
+                rvs.add(vg.getChildAt(i).getId());
+            }
+        }
+
+        rvs = new ArrayList<>();
+        for (int i = 0; i < drawerLayout.getChildCount(); i++) {
             if (vg.getChildAt(i) instanceof RecyclerView) {
                 rvs.add(vg.getChildAt(i).getId());
             }

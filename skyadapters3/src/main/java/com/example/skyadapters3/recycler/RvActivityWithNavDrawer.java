@@ -28,7 +28,7 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
         super.onCreate(savedInstanceState);
 
         ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
-        ArrayList<Integer> rvs = new ArrayList<>();
+        rvs = new ArrayList<>();
         for (int i = 0; i < vg.getChildCount(); i++) {
             if (vg.getChildAt(i) instanceof RecyclerView) {
                 rvs.add(vg.getChildAt(i).getId());

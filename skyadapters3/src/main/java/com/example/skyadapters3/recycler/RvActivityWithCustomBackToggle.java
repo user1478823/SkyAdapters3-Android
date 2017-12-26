@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.skyadapters3.ToolbarAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ttlnisoffice on 12/20/17.
@@ -58,7 +59,7 @@ public abstract class RvActivityWithCustomBackToggle extends RvActivity {
     }
 
     @Override
-    public ArrayList<Integer> holderIDS() {
+    public List<Integer> holderIDS() {
         return getHolderIDS();
     }
 

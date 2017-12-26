@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ttlnisoffice on 12/20/17.
@@ -33,7 +34,7 @@ public abstract class RvActivityWithSpinner extends RvActivity {
     }
 
     @Override
-    public ArrayList<Integer> holderIDS() {
+    public List<Integer> holderIDS() {
         return getHolderIDS();
     }
 

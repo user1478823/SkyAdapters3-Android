@@ -1,20 +1,18 @@
 package com.example.skyadapters3.recycler;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import com.example.skyadapters3.R;
 import com.example.skyadapters3.ToolbarAdapter;
 import com.example.skyadapters3.ToolbarCustomizer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ttlnisoffice on 12/22/17.
@@ -109,8 +107,8 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
     }
 
     @Override
-    public ArrayList<Integer> holderIDS() {
-        return (ArrayList<Integer>) rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size());
+    public List<Integer> holderIDS() {
+        return rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size());
 
     }
 

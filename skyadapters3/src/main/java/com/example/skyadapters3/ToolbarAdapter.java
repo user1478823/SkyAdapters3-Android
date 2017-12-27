@@ -112,7 +112,7 @@ public class ToolbarAdapter {
             toggleBtn = new ActionBarDrawerToggle(a, drawerLayout,
                     R.string.drawer_open, R.string.drawer_closed);
             drawerLayout.addDrawerListener(toggleBtn);
-            toggleBtn.syncState();
+            //toggleBtn.syncState();
         }
 
         if (toolbar != null) {

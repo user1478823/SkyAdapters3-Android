@@ -62,6 +62,10 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
                 drawerMenuID_drawerCustomLayoutID_drawerItemColor()[2],
                 rvs.get(1));
 
+        if (toggle != null) {
+            toggle.syncState();
+        }
+
         if (customizeToolbar() != null) {
             if (customizeToolbar().setToolbarTitle() != null) {
                 toolbarAdapter.setToolbarTitle(customizeToolbar().setToolbarTitle());

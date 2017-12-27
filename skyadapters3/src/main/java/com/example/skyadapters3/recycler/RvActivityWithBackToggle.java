@@ -38,6 +38,8 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
         setupRV();
     }
 
+    public abstract int getActivityView();
+
     @Override
     public int getView() {
         return getActivityView();
@@ -57,17 +59,17 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
 
     @Override
     public int rvCustomRow() {
-        return getRvCustomRow();
+        return rvCustomRow_rvSize_holderIDS().get(0);
     }
 
     @Override
     public int rvSize() {
-        return getRvSize();
+        return rvCustomRow_rvSize_holderIDS().get(1);
     }
 
     @Override
     public List<Integer> holderIDS() {
-        return getHolderIDS();
+        return rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size());
     }
 
     @Override
@@ -81,13 +83,9 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
     }
 
     public abstract RvAdapter.RvInterface getRvOnBind();
-    public abstract int getActivityView();
-    public abstract int getRvID();
-    public abstract int getRvCustomRow();
-    public abstract int getRvSize();
-    public abstract ArrayList<Integer> getHolderIDS();
     public abstract RecyclerView.LayoutManager getRvLayoutManager();
-
+    public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
+    
     public abstract String   getToolbarTitle();
     public abstract Integer  getToolbarColor();
     public abstract Typeface getToolbarTypeFace();

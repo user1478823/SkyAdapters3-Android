@@ -19,6 +19,10 @@ import java.util.List;
 
 public abstract class RvActivityWithBackToggle extends AppCompatActivity {
 
+    private RecyclerView rv;
+    private List list = null;
+    private RvAdapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +44,8 @@ public abstract class RvActivityWithBackToggle extends AppCompatActivity {
             }
         }
 
-        RecyclerView rv = (RecyclerView) findViewById(getRvID());
+        rv = (RecyclerView) findViewById(getRvID());
         rv.setLayoutManager(rvLayoutManager());
-        RvAdapter adapter = new RvAdapter(rvCustomRow_rvSize_holderIDS().get(1),
-                                          rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
-                                          rvCustomRow_rvSize_holderIDS().get(0),
-                                          rvOnBind());
-        rv.setAdapter(adapter);
     }
 
     public abstract int getActivityView();
@@ -67,4 +66,19 @@ public abstract class RvActivityWithBackToggle extends AppCompatActivity {
     public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();
+
+    public void populateRv(List list) {
+        if (list == null) {
+            this.list = list;
+        } else {
+            this.list.addAll(list);
+            adapter.notifyDataSetChanged();
+        }
+
+        adapter = new RvAdapter(this.list.size(),
+                rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
+                rvCustomRow_rvSize_holderIDS().get(0),
+                rvOnBind());
+        rv.setAdapter(adapter);
+    }
 }

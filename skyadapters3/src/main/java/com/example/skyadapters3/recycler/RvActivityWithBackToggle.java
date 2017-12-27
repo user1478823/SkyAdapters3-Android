@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.example.skyadapters3.ToolbarAdapter;
+import com.example.skyadapters3.ToolbarCustomizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +23,19 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
         super.onCreate(savedInstanceState);
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toolbarAdapter.buildToolbarWithHomeUp();
-        if (getToolbarTitle() != null) {
-            toolbarAdapter.setToolbarTitle(getToolbarTitle());
-        }
-        if (getToolbarColor() != null) {
-            toolbarAdapter.setToolbarColor(getToolbarColor());
-        }
-        if (getToolbarTextColor() != null) {
-            toolbarAdapter.setToolbarTextColor(getToolbarTextColor());
-        }
-        if (getToolbarTypeFace() != null) {
-            toolbarAdapter.setToolbarTypeFace(getToolbarTypeFace());
+        if (customizeToolbar() != null) {
+            if (customizeToolbar().setToolbarTitle() != null) {
+                toolbarAdapter.setToolbarTitle(customizeToolbar().setToolbarTitle());
+            }
+            if (customizeToolbar().setToolbarColor() != null) {
+                toolbarAdapter.setToolbarColor(customizeToolbar().setToolbarColor());
+            }
+            if (customizeToolbar().setToolbarTextColor() != null) {
+                toolbarAdapter.setToolbarTextColor(customizeToolbar().setToolbarTextColor());
+            }
+            if (customizeToolbar().setToolbarTypeFace() != null) {
+                toolbarAdapter.setToolbarTypeFace(customizeToolbar().setToolbarTypeFace());
+            }
         }
 
         setupRV();
@@ -85,9 +88,6 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
     public abstract RvAdapter.RvInterface getRvOnBind();
     public abstract RecyclerView.LayoutManager getRvLayoutManager();
     public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
-    
-    public abstract String   getToolbarTitle();
-    public abstract Integer  getToolbarColor();
-    public abstract Typeface getToolbarTypeFace();
-    public abstract Integer  getToolbarTextColor();
+
+    public abstract ToolbarCustomizer customizeToolbar();
 }

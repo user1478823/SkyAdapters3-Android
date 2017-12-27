@@ -68,7 +68,7 @@ public abstract class RvActivityWithBackToggle extends AppCompatActivity {
     public abstract ToolbarCustomizer customizeToolbar();
 
     public void populateRv(List list) {
-        if (list == null) {
+        if (this.list == null) {
             this.list = list;
         } else {
             this.list.addAll(list);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by ttlnisoffice on 12/22/17.
  */
 
-public abstract class RvActivityWithNavDrawer extends RvActivity {
+public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
 
     private ActionBarDrawerToggle toggle;
     private ArrayList<Integer> rvs;
@@ -43,7 +44,13 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
             }
         }
 
-        setupRV();
+        RecyclerView rv = (RecyclerView) findViewById(getRvID());
+        rv.setLayoutManager(rvLayoutManager());
+        RvAdapter adapter = new RvAdapter(rvCustomRow_rvSize_holderIDS().get(1),
+                rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
+                rvCustomRow_rvSize_holderIDS().get(0),
+                rvOnBind());
+        rv.setAdapter(adapter);
 
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toggle = toolbarAdapter.buildToolbarWithNavDrawer(
@@ -70,57 +77,27 @@ public abstract class RvActivityWithNavDrawer extends RvActivity {
             }
         }
     }
-
-
+    
     public abstract int getActivityView();
+
+    public Integer getRvID() {
+        ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
+        Integer rvID = null;
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            if (vg.getChildAt(i) instanceof RecyclerView) {
+                rvID = vg.getChildAt(i).getId();
+            }
+        }
+        return rvID;
+    }
 
     public abstract Class[] getDrawerActivitiesToLaunch();
     public abstract Integer[] drawerMenuID_drawerCustomLayoutID_drawerItemColor();
     public abstract RecyclerView.LayoutManager getDrawerLayoutManager();
 
 
-    /*public abstract int getDrawerMenuID();
-    public abstract int getDrawerCustomLayoutID();
-    public abstract int getDrawerItemColor();*/
-
-    @Override
-    public int getView() {
-        return getActivityView();
-    }
-
-    @Override
-    public int initRv() {
-        return rvs.get(0);
-    }
-
-    @Override
-    public int rvCustomRow() {
-        return rvCustomRow_rvSize_holderIDS().get(0);
-    }
-
-    @Override
-    public int rvSize() {
-        return rvCustomRow_rvSize_holderIDS().get(1);
-    }
-
-    @Override
-    public List<Integer> holderIDS() {
-        return rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size());
-
-    }
-
-    @Override
-    public RecyclerView.LayoutManager rvLayoutManager() {
-        return getRvLayoutManager();
-    }
-
-    @Override
-    public RvAdapter.RvInterface rvOnBind() {
-        return getRvOnBind();
-    }
-
-    public abstract RvAdapter.RvInterface getRvOnBind();
-    public abstract RecyclerView.LayoutManager getRvLayoutManager();
+    public abstract RvAdapter.RvInterface rvOnBind();
+    public abstract RecyclerView.LayoutManager rvLayoutManager();
     public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();

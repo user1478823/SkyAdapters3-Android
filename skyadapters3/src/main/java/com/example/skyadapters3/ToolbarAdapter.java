@@ -42,10 +42,10 @@ public class ToolbarAdapter {
 
         }
 
-        if (toolbar == null) {
+        if (toolbar == null && a.getClass().getSimpleName().contains("MainActivity")) {
             showErrorWarning("Toolbar is null, did you add Toolbar in xml or did you give it id?");
         }
-        if (drawerLayout == null) {
+        if (drawerLayout == null && a.getClass().getSimpleName().contains("MainActivity")) {
             showErrorWarning("DrawerLayout is null, did you add DrawerLayout in xml or did you give it id?");
         }
     }

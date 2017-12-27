@@ -114,7 +114,7 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
     }
 
     public void populateRv(List list) {
-        if (list == null) {
+        if (this.list == null) {
             this.list = list;
         } else {
             this.list.addAll(list);

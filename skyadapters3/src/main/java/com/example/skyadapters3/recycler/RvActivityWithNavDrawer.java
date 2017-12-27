@@ -44,7 +44,7 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
             }
         }
 
-        RecyclerView rv = (RecyclerView) findViewById(getRvID());
+        RecyclerView rv = (RecyclerView) findViewById(rvs.get(0));
         rv.setLayoutManager(rvLayoutManager());
         RvAdapter adapter = new RvAdapter(rvCustomRow_rvSize_holderIDS().get(1),
                 rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),

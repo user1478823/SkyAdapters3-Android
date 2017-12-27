@@ -23,6 +23,7 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
 
     private ActionBarDrawerToggle toggle;
     private ArrayList<Integer> rvs;
+    private RecyclerView rv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,13 +45,13 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
             }
         }
 
-        RecyclerView rv = (RecyclerView) findViewById(rvs.get(0));
+        rv = (RecyclerView) findViewById(rvs.get(0));
         rv.setLayoutManager(rvLayoutManager());
-        RvAdapter adapter = new RvAdapter(rvCustomRow_rvSize_holderIDS().get(1),
+        /*RvAdapter adapter = new RvAdapter(rvCustomRow_rvSize_holderIDS().get(1),
                 rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
                 rvCustomRow_rvSize_holderIDS().get(0),
                 rvOnBind());
-        rv.setAdapter(adapter);
+        rv.setAdapter(adapter);*/
 
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toggle = toolbarAdapter.buildToolbarWithNavDrawer(
@@ -114,5 +115,14 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
             return false;
         }
     }
+
+    public void populateRv(List list) {
+        RvAdapter adapter = new RvAdapter(list.size(),
+                rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
+                rvCustomRow_rvSize_holderIDS().get(0),
+                rvOnBind());
+        rv.setAdapter(adapter);
+    }
+
 }
 

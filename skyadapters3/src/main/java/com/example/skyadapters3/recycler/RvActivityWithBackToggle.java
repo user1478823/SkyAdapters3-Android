@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 
 import com.example.skyadapters3.ToolbarAdapter;
 
@@ -44,7 +45,14 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
 
     @Override
     public int initRv() {
-        return getRvID();
+        ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
+        Integer rvID = null;
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            if (vg.getChildAt(i) instanceof RecyclerView) {
+                rvID = vg.getChildAt(i).getId();
+            }
+        }
+        return rvID;
     }
 
     @Override

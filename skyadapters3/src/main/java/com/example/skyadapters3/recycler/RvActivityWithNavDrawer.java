@@ -27,7 +27,7 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(getActivityView());
         ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
 
         DrawerLayout drawerLayout = null;
@@ -77,7 +77,7 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
             }
         }
     }
-    
+
     public abstract int getActivityView();
 
     public Integer getRvID() {

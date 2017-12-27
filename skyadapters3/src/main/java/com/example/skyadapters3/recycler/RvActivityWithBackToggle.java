@@ -3,6 +3,7 @@ package com.example.skyadapters3.recycler;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -16,11 +17,12 @@ import java.util.List;
  * Created by ttlnisoffice on 12/20/17.
  */
 
-public abstract class RvActivityWithBackToggle extends RvActivity {
+public abstract class RvActivityWithBackToggle extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getActivityView());
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toolbarAdapter.buildToolbarWithHomeUp();
         if (customizeToolbar() != null) {
@@ -38,18 +40,18 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
             }
         }
 
-        setupRV();
+        RecyclerView rv = (RecyclerView) findViewById(getRvID());
+        rv.setLayoutManager(rvLayoutManager());
+        RvAdapter adapter = new RvAdapter(rvCustomRow_rvSize_holderIDS().get(1),
+                                          rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
+                                          rvCustomRow_rvSize_holderIDS().get(0),
+                                          rvOnBind());
+        rv.setAdapter(adapter);
     }
 
     public abstract int getActivityView();
 
-    @Override
-    public int getView() {
-        return getActivityView();
-    }
-
-    @Override
-    public int initRv() {
+    public Integer getRvID() {
         ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
         Integer rvID = null;
         for (int i = 0; i < vg.getChildCount(); i++) {
@@ -60,33 +62,8 @@ public abstract class RvActivityWithBackToggle extends RvActivity {
         return rvID;
     }
 
-    @Override
-    public int rvCustomRow() {
-        return rvCustomRow_rvSize_holderIDS().get(0);
-    }
-
-    @Override
-    public int rvSize() {
-        return rvCustomRow_rvSize_holderIDS().get(1);
-    }
-
-    @Override
-    public List<Integer> holderIDS() {
-        return rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size());
-    }
-
-    @Override
-    public RecyclerView.LayoutManager rvLayoutManager() {
-        return getRvLayoutManager();
-    }
-
-    @Override
-    public RvAdapter.RvInterface rvOnBind() {
-        return getRvOnBind();
-    }
-
-    public abstract RvAdapter.RvInterface getRvOnBind();
-    public abstract RecyclerView.LayoutManager getRvLayoutManager();
+    public abstract RvAdapter.RvInterface rvOnBind();
+    public abstract RecyclerView.LayoutManager rvLayoutManager();
     public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();

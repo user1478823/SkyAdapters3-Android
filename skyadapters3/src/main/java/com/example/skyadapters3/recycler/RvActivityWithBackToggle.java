@@ -1,6 +1,5 @@
 package com.example.skyadapters3.recycler;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -63,7 +62,7 @@ public abstract class RvActivityWithBackToggle extends AppCompatActivity {
 
     public abstract RvAdapter.RvInterface rvOnBind();
     public abstract RecyclerView.LayoutManager rvLayoutManager();
-    public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
+    public abstract ArrayList<Integer> rvCustomRow_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();
 
@@ -76,8 +75,8 @@ public abstract class RvActivityWithBackToggle extends AppCompatActivity {
         }
 
         adapter = new RvAdapter(this.list.size(),
-                rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
-                rvCustomRow_rvSize_holderIDS().get(0),
+                rvCustomRow_holderIDS().subList(1, rvCustomRow_holderIDS().size()),
+                rvCustomRow_holderIDS().get(0),
                 rvOnBind());
         rv.setAdapter(adapter);
     }

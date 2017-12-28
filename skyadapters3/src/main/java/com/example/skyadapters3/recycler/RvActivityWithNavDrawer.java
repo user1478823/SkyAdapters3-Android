@@ -53,10 +53,10 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toggle = toolbarAdapter.buildToolbarWithNavDrawer(
                 getActivityView(),
-                getDrawerActivitiesToLaunch(),
+                drawerActivitiesToLaunch(),
                 drawerMenuID_drawerCustomLayoutID_drawerItemColor()[0],
                 drawerMenuID_drawerCustomLayoutID_drawerItemColor()[1],
-                getDrawerLayoutManager(),
+                drawerLayoutManager(),
                 drawerMenuID_drawerCustomLayoutID_drawerItemColor()[2],
                 rvs.get(1));
 
@@ -82,25 +82,13 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
 
     public abstract int getActivityView();
 
-    public Integer getRvID() {
-        ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
-        Integer rvID = null;
-        for (int i = 0; i < vg.getChildCount(); i++) {
-            if (vg.getChildAt(i) instanceof RecyclerView) {
-                rvID = vg.getChildAt(i).getId();
-            }
-        }
-        return rvID;
-    }
-
-    public abstract Class[] getDrawerActivitiesToLaunch();
+    public abstract Class[] drawerActivitiesToLaunch();
+    public abstract RecyclerView.LayoutManager drawerLayoutManager();
     public abstract Integer[] drawerMenuID_drawerCustomLayoutID_drawerItemColor();
-    public abstract RecyclerView.LayoutManager getDrawerLayoutManager();
-
 
     public abstract RvAdapter.RvInterface rvOnBind();
     public abstract RecyclerView.LayoutManager rvLayoutManager();
-    public abstract ArrayList<Integer> rvCustomRow_rvSize_holderIDS();
+    public abstract ArrayList<Integer> rvCustomRow_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();
 
@@ -122,8 +110,8 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
         }
 
         adapter = new RvAdapter(this.list.size(),
-                rvCustomRow_rvSize_holderIDS().subList(2, rvCustomRow_rvSize_holderIDS().size()),
-                rvCustomRow_rvSize_holderIDS().get(0),
+                rvCustomRow_holderIDS().subList(1, rvCustomRow_holderIDS().size()),
+                rvCustomRow_holderIDS().get(0),
                 rvOnBind());
         rv.setAdapter(adapter);
     }

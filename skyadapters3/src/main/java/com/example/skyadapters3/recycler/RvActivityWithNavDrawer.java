@@ -30,6 +30,10 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Integer theme = getMyTheme().getTheme();
+        if (theme != null) {
+            setTheme(theme);
+        }
         setContentView(getActivityView());
         ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
 
@@ -91,6 +95,7 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
     public abstract ArrayList<Integer> rvCustomRow_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();
+    public abstract ThemeManager getMyTheme();
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

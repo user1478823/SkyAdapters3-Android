@@ -30,8 +30,8 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Integer theme = getMyTheme().getTheme();
-        if (theme != null) {
+        if (getMyTheme() != null) {
+            Integer theme = getMyTheme().getTheme();
             setTheme(theme);
         }
         setContentView(getActivityView());

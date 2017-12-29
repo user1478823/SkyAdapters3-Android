@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 public abstract class RvActivityWithBackToggle extends RvBase {
-    
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -38,7 +38,6 @@ public abstract class RvBase extends AppCompatActivity {
             this.list = list;
         } else {
             this.list.addAll(list);
-            adapter.notifyDataSetChanged();
         }
 
         if (adapter == null) {

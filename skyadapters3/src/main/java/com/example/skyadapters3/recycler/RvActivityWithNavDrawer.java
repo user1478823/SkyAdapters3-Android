@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
+import com.example.skyadapters3.RxBackground;
 import com.example.skyadapters3.ToolbarAdapter;
 import com.example.skyadapters3.ToolbarCustomizer;
 
@@ -19,13 +19,9 @@ import java.util.List;
  * Created by ttlnisoffice on 12/22/17.
  */
 
-public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
+public abstract class RvActivityWithNavDrawer extends RvBase implements RxBackground.RxBackgroundInterface {
 
     private ActionBarDrawerToggle toggle;
-    private ArrayList<Integer> rvs;
-    private RecyclerView rv;
-    private List list = null;
-    private RvAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,15 +40,14 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
             }
         }
 
-        rvs = new ArrayList<>();
+        ArrayList<Integer> rvs = new ArrayList<>();
         for (int i = 0; i < drawerLayout.getChildCount(); i++) {
             if (drawerLayout.getChildAt(i) instanceof RecyclerView) {
                 rvs.add(drawerLayout.getChildAt(i).getId());
             }
         }
 
-        rv = (RecyclerView) findViewById(rvs.get(0));
-        rv.setLayoutManager(rvLayoutManager());
+        initRv();
 
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toggle = toolbarAdapter.buildToolbarWithNavDrawer(
@@ -90,6 +85,21 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
     public abstract RecyclerView.LayoutManager drawerLayoutManager();
     public abstract Integer[] drawerMenuID_drawerCustomLayoutID_drawerItemColor();
 
+    @Override
+    public RvAdapter.RvInterface getRvOnBind() {
+        return rvOnBind();
+    }
+
+    @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return rvLayoutManager();
+    }
+
+    @Override
+    public ArrayList<Integer> getRvCustomRow_holderIDS() {
+        return rvCustomRow_holderIDS();
+    }
+
     public abstract RvAdapter.RvInterface rvOnBind();
     public abstract RecyclerView.LayoutManager rvLayoutManager();
     public abstract ArrayList<Integer> rvCustomRow_holderIDS();
@@ -106,20 +116,17 @@ public abstract class RvActivityWithNavDrawer extends AppCompatActivity {
         }
     }
 
-    public void populateRv(List list) {
-        if (this.list == null) {
-            this.list = list;
-        } else {
-            this.list.addAll(list);
-            adapter.notifyDataSetChanged();
-        }
-
-        adapter = new RvAdapter(this.list.size(),
-                rvCustomRow_holderIDS().subList(1, rvCustomRow_holderIDS().size()),
-                rvCustomRow_holderIDS().get(0),
-                rvOnBind());
-        rv.setAdapter(adapter);
+    @Override
+    public List getDoInBackground() {
+        return doInBackground();
     }
 
+    @Override
+    public void getOnResultReceived(List value) {
+        onResultReceived(value);
+    }
+
+    public abstract List doInBackground();
+    public abstract void onResultReceived(List value);
 }
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.example.skyadapters3.RxBackground;
 import com.example.skyadapters3.ToolbarAdapter;
 import com.example.skyadapters3.ToolbarCustomizer;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by ttlnisoffice on 12/20/17.
  */
 
-public abstract class RvActivityWithBackToggle extends RvBase {
+public abstract class RvActivityWithBackToggle extends RvBase implements RxBackground.RxBackgroundInterface {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public abstract class RvActivityWithBackToggle extends RvBase {
         }
 
         initRv();
+        new RxBackground().executeInBackground(this, this);
     }
 
     public abstract int getActivityView();
@@ -74,4 +76,17 @@ public abstract class RvActivityWithBackToggle extends RvBase {
     public RvAdapter.RvInterface getRvOnBind() {
         return rvOnBind();
     }
+
+    @Override
+    public List getDoInBackground() {
+        return doInBackground();
+    }
+
+    @Override
+    public void getOnResultReceived(List value) {
+        onResultReceived(value);
+    }
+
+    public abstract List doInBackground();
+    public abstract void onResultReceived(List value);
 }

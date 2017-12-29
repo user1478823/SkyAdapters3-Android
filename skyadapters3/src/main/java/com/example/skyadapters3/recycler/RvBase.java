@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.example.skyadapters3.RxBackground;
+
 import java.util.ArrayList;
 import java.util.List;
 

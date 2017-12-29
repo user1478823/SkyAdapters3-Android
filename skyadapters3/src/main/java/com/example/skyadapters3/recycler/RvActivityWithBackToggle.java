@@ -16,15 +16,15 @@ import java.util.List;
  * Created by ttlnisoffice on 12/20/17.
  */
 
-public abstract class RvActivityWithBackToggle extends AppCompatActivity {
-
-    private RecyclerView rv;
-    private List list = null;
-    private RvAdapter adapter;
-
+public abstract class RvActivityWithBackToggle extends RvBase {
+    
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getMyTheme() != null) {
+            Integer theme = getMyTheme().getTheme();
+            setTheme(theme);
+        }
         setContentView(getActivityView());
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toolbarAdapter.buildToolbarWithHomeUp();
@@ -43,41 +43,35 @@ public abstract class RvActivityWithBackToggle extends AppCompatActivity {
             }
         }
 
-        rv = (RecyclerView) findViewById(getRvID());
-        rv.setLayoutManager(rvLayoutManager());
+        initRv();
     }
 
     public abstract int getActivityView();
-
-    public Integer getRvID() {
-        ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
-        Integer rvID = null;
-        for (int i = 0; i < vg.getChildCount(); i++) {
-            if (vg.getChildAt(i) instanceof RecyclerView) {
-                rvID = vg.getChildAt(i).getId();
-            }
-        }
-        return rvID;
-    }
 
     public abstract RvAdapter.RvInterface rvOnBind();
     public abstract RecyclerView.LayoutManager rvLayoutManager();
     public abstract ArrayList<Integer> rvCustomRow_holderIDS();
 
     public abstract ToolbarCustomizer customizeToolbar();
+    public abstract ThemeManager getMyTheme();
 
-    public void populateRv(List list) {
-        if (this.list == null) {
-            this.list = list;
-        } else {
-            this.list.addAll(list);
-            adapter.notifyDataSetChanged();
-        }
+    @Override
+    public Integer getView() {
+        return getActivityView();
+    }
 
-        adapter = new RvAdapter(this.list.size(),
-                rvCustomRow_holderIDS().subList(1, rvCustomRow_holderIDS().size()),
-                rvCustomRow_holderIDS().get(0),
-                rvOnBind());
-        rv.setAdapter(adapter);
+    @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return rvLayoutManager();
+    }
+
+    @Override
+    public ArrayList<Integer> getRvCustomRow_holderIDS() {
+        return rvCustomRow_holderIDS();
+    }
+
+    @Override
+    public RvAdapter.RvInterface getRvOnBind() {
+        return rvOnBind();
     }
 }

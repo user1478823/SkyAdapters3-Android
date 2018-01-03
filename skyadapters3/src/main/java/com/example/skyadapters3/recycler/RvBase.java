@@ -24,24 +24,13 @@ public abstract class RvBase extends AppCompatActivity {
     private RvAdapter adapter;
     private RecyclerView rv;
 
-    public void initRv() {
-        ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getView(), null);
-        Integer rvID = null;
-        ArrayList<Integer> ids = new ArrayList<>();
-        for (int i = 0; i < vg.getChildCount(); i++) {
-            if (vg.getChildAt(i) instanceof RecyclerView) {
-                ids.add(vg.getChildAt(i).getId());
-            }
-        }
-        rvID = ids.get(0);
-
+    public void initRv(Integer rvID) {
         if (rvID != null) {
             rv = (RecyclerView) findViewById(rvID);
             rv.setLayoutManager(getLayoutManager());
         } else {
             Toast.makeText(this, "Error: RvID is null", Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void populateRv(List list) {

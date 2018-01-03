@@ -44,7 +44,16 @@ public abstract class RvActivityWithBackToggle extends RvBase implements RxBackg
             }
         }
 
-        initRv();
+        ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getActivityView(), null);
+
+        Integer rvID = null;
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            if (vg.getChildAt(i) instanceof RecyclerView) {
+                rvID = vg.getChildAt(i).getId();
+            }
+        }
+
+        initRv(rvID);
         new RxBackground().executeInBackground(this, this);
     }
 

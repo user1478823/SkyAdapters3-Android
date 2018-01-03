@@ -28,10 +28,13 @@ public abstract class RvBase extends AppCompatActivity {
         if (rvID != null) {
             rv = (RecyclerView) findViewById(rvID);
             rv.setLayoutManager(getLayoutManager());
+            rv.addOnScrollListener(getEndlessRecyclerOnScrollListener());
         } else {
             Toast.makeText(this, "Error: RvID is null", Toast.LENGTH_LONG).show();
         }
     }
+
+    protected abstract EndlessRecyclerOnScrollListener getEndlessRecyclerOnScrollListener();
 
     public void populateRv(List list) {
         if (this.list == null) {

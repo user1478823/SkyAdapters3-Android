@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,13 +12,13 @@ import java.util.List;
 
 public class RvAdapter extends RecyclerView.Adapter<RvHolder> {
 
-    private int rvSize;
+    private List list;
     private List<Integer> ids;
     private int customRow;
     private RvInterface rvInterface;
 
-    public RvAdapter(int rvSize, List<Integer> ids, int customRow, RvInterface rvInterface) {
-        this.rvSize = rvSize;
+    public RvAdapter(List list, List<Integer> ids, int customRow, RvInterface rvInterface) {
+        this.list = list;
         this.ids = ids;
         this.customRow = customRow;
         this.rvInterface = rvInterface;
@@ -38,7 +37,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvHolder> {
 
     @Override
     public int getItemCount() {
-        return rvSize;
+        return list.size();
     }
 
     public interface RvInterface {

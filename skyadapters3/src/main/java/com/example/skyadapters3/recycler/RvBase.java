@@ -41,7 +41,7 @@ public abstract class RvBase extends AppCompatActivity {
     public void populateRv(List value) {
         if (list == null) {
             list = value;
-            adapter = new RvAdapter(list.size(),
+            adapter = new RvAdapter(list,
                     getRvCustomRow_holderIDS().subList(1, getRvCustomRow_holderIDS().size()),
                     getRvCustomRow_holderIDS().get(0),
                     getRvOnBind());

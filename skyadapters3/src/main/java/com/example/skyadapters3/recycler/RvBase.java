@@ -28,7 +28,9 @@ public abstract class RvBase extends AppCompatActivity {
         if (rvID != null) {
             rv = (RecyclerView) findViewById(rvID);
             rv.setLayoutManager(getLayoutManager());
-            rv.addOnScrollListener(getEndlessRecyclerOnScrollListener());
+            if (getEndlessRecyclerOnScrollListener() != null) {
+                rv.addOnScrollListener(getEndlessRecyclerOnScrollListener());
+            }
         } else {
             Toast.makeText(this, "Error: RvID is null", Toast.LENGTH_LONG).show();
         }

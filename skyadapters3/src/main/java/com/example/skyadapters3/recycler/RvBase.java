@@ -38,25 +38,25 @@ public abstract class RvBase extends AppCompatActivity {
 
     protected abstract EndlessRecyclerOnScrollListener getEndlessRecyclerOnScrollListener();
 
-    public void populateRv(List list) {
-        if (this.list == null) {
-            this.list = list;
-            adapter = new RvAdapter(this.list.size(),
+    public void populateRv(List value) {
+        if (list == null) {
+            list = value;
+            adapter = new RvAdapter(list.size(),
                     getRvCustomRow_holderIDS().subList(1, getRvCustomRow_holderIDS().size()),
                     getRvCustomRow_holderIDS().get(0),
                     getRvOnBind());
             rv.setAdapter(adapter);
         } else {
-            int scroll = this.list.size();
-            this.list.addAll(list);
+            //int scroll = this.list.size();
+            list.addAll(value);
             /*adapter = new RvAdapter(this.list.size(),
                     getRvCustomRow_holderIDS().subList(1, getRvCustomRow_holderIDS().size()),
                     getRvCustomRow_holderIDS().get(0),
                     getRvOnBind());
             rv.setAdapter(adapter);
             rv.scrollToPosition(scroll);*/
-           // adapter.notifyDataSetChanged();
-            adapter.notifyItemRangeInserted(scroll, list.size());
+            adapter.notifyDataSetChanged();
+            //adapter.notifyItemRangeInserted(scroll, value.size());
         }
     }
 

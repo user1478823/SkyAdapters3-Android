@@ -29,8 +29,8 @@ public abstract class RvActivityWithSpinner extends RvActivity {
     }
 
     @Override
-    public int rvSize() {
-        return getRvSize();
+    public List rvList() {
+        return getRvList();
     }
 
     @Override
@@ -52,7 +52,7 @@ public abstract class RvActivityWithSpinner extends RvActivity {
     public abstract int getActivityView();
     public abstract int getRvID();
     public abstract int getRvCustomRow();
-    public abstract int getRvSize();
+    public abstract List getRvList();
     public abstract ArrayList<Integer> getHolderIDS();
     public abstract RecyclerView.LayoutManager getRvLayoutManager();
 

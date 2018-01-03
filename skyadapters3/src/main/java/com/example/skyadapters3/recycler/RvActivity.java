@@ -24,14 +24,14 @@ public abstract class RvActivity extends AppCompatActivity {
     public void setupRV() {
         RecyclerView rv = (RecyclerView) findViewById(initRv());
         rv.setLayoutManager(rvLayoutManager());
-        adapter = new RvAdapter(rvSize(), holderIDS(), rvCustomRow(), rvOnBind());
+        adapter = new RvAdapter(rvList(), holderIDS(), rvCustomRow(), rvOnBind());
         rv.setAdapter(adapter);
     }
 
     public abstract int getView();
     public abstract int initRv();
     public abstract int rvCustomRow();
-    public abstract int rvSize();
+    public abstract List rvList();
     public abstract List<Integer> holderIDS();
     public abstract RecyclerView.LayoutManager rvLayoutManager();
     public abstract RvAdapter.RvInterface rvOnBind();

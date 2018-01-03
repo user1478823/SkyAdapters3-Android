@@ -54,7 +54,7 @@ public abstract class RvActivityWithCustomBackToggle extends RvActivity {
     }
 
     @Override
-    public int rvSize() {
+    public List rvList() {
         return getRvSize();
     }
 
@@ -77,7 +77,7 @@ public abstract class RvActivityWithCustomBackToggle extends RvActivity {
     public abstract int getActivityView();
     public abstract int getRvID();
     public abstract int getRvCustomRow();
-    public abstract int getRvSize();
+    public abstract List getRvSize();
     public abstract ArrayList<Integer> getHolderIDS();
     public abstract RecyclerView.LayoutManager getRvLayoutManager();
 

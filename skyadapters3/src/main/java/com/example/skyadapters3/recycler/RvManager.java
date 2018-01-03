@@ -15,7 +15,7 @@ public class RvManager {
     private Activity a;
     private RecyclerView rv;
     private int customRow;
-    private int rvSize;
+    private List rvList;
     private ArrayList<Integer> ids;
 
     public RvManager(Activity a) {
@@ -32,8 +32,8 @@ public class RvManager {
         return this;
     }
 
-    public RvManager threeRvSize(int rvSize) {
-        this.rvSize = rvSize;
+    public RvManager threeRvSize(List rvList) {
+        this.rvList = rvList;
         return this;
     }
 
@@ -48,6 +48,6 @@ public class RvManager {
     }
 
     public void sixFinnalOnBind(RvAdapter.RvInterface rvInterface) {
-        rv.setAdapter(new RvAdapter(rvSize, ids, customRow, rvInterface));
+        rv.setAdapter(new RvAdapter(rvList, ids, customRow, rvInterface));
     }
 }

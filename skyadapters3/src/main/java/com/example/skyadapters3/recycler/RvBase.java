@@ -49,13 +49,14 @@ public abstract class RvBase extends AppCompatActivity {
         } else {
             int scroll = this.list.size();
             this.list.addAll(list);
-            adapter = new RvAdapter(this.list.size(),
+            /*adapter = new RvAdapter(this.list.size(),
                     getRvCustomRow_holderIDS().subList(1, getRvCustomRow_holderIDS().size()),
                     getRvCustomRow_holderIDS().get(0),
                     getRvOnBind());
             rv.setAdapter(adapter);
-            rv.scrollToPosition(scroll);
+            rv.scrollToPosition(scroll);*/
            // adapter.notifyDataSetChanged();
+            adapter.notifyItemRangeInserted(scroll, list.size());
         }
     }
 

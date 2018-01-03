@@ -3,6 +3,7 @@ package com.example.skyadapters3.recycler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.skyadapters3.RxBackground;
 
@@ -26,13 +27,21 @@ public abstract class RvBase extends AppCompatActivity {
     public void initRv() {
         ViewGroup vg = (ViewGroup) getLayoutInflater().inflate(getView(), null);
         Integer rvID = null;
+        ArrayList<Integer> ids = new ArrayList<>();
         for (int i = 0; i < vg.getChildCount(); i++) {
             if (vg.getChildAt(i) instanceof RecyclerView) {
-                rvID = vg.getChildAt(i).getId();
+                ids.add(vg.getChildAt(i).getId());
             }
         }
-        rv = (RecyclerView) findViewById(rvID);
-        rv.setLayoutManager(getLayoutManager());
+        rvID = ids.get(0);
+
+        if (rvID != null) {
+            rv = (RecyclerView) findViewById(rvID);
+            rv.setLayoutManager(getLayoutManager());
+        } else {
+            Toast.makeText(this, "Error: RvID is null", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void populateRv(List list) {

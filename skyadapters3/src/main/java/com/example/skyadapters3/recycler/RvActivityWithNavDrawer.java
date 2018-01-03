@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.skyadapters3.RxBackground;
 import com.example.skyadapters3.ToolbarAdapter;
@@ -37,6 +38,14 @@ public abstract class RvActivityWithNavDrawer extends RvBase implements RxBackgr
         for (int i = 0; i < vg.getChildCount(); i++) {
             if (vg.getChildAt(i) instanceof DrawerLayout) {
                 drawerLayout = (DrawerLayout) findViewById(vg.getChildAt(i).getId());
+            }
+            if (vg.getChildAt(i) instanceof LinearLayout) {
+                LinearLayout linearLayout = (LinearLayout) findViewById(vg.getChildAt(i).getId());
+                for (int j = 0; j < linearLayout.getChildCount(); j++) {
+                    if (linearLayout.getChildAt(j) instanceof DrawerLayout) {
+                        drawerLayout = (DrawerLayout) findViewById(vg.getChildAt(j).getId());
+                    }
+                }
             }
         }
 

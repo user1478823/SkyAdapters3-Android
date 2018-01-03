@@ -20,7 +20,7 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class RvBase extends AppCompatActivity {
 
-    public List list;
+    public List list = null;
     public RvAdapter adapter;
     private RecyclerView rv;
 
@@ -41,17 +41,13 @@ public abstract class RvBase extends AppCompatActivity {
     public void populateRv(List list) {
         if (this.list == null) {
             this.list = list;
-        } else {
-            this.list.addAll(list);
-        }
-
-        if (adapter == null) {
             adapter = new RvAdapter(this.list.size(),
                     getRvCustomRow_holderIDS().subList(1, getRvCustomRow_holderIDS().size()),
                     getRvCustomRow_holderIDS().get(0),
                     getRvOnBind());
             rv.setAdapter(adapter);
         } else {
+            this.list.addAll(list);
             adapter.notifyDataSetChanged();
         }
     }

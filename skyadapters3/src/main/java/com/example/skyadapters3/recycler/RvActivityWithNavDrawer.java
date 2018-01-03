@@ -46,7 +46,7 @@ public abstract class RvActivityWithNavDrawer extends RvBase implements RxBackgr
             if (drawerLayout.getChildAt(i) instanceof RecyclerView) {
                 rvs.add(drawerLayout.getChildAt(i).getId());
             }
-            if (vg.getChildAt(i) instanceof LinearLayout) {
+            if (drawerLayout.getChildAt(i) instanceof LinearLayout) {
                 LinearLayout linearLayout = (LinearLayout) findViewById(vg.getChildAt(i).getId());
                 for (int j = 0; j < linearLayout.getChildCount(); j++) {
                     if (linearLayout.getChildAt(j) instanceof RecyclerView) {

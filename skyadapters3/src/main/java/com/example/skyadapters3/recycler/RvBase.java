@@ -21,7 +21,7 @@ import io.reactivex.disposables.Disposable;
 public abstract class RvBase extends AppCompatActivity {
 
     public List list;
-    private RvAdapter adapter;
+    public RvAdapter adapter;
     private RecyclerView rv;
 
     public void initRv(Integer rvID) {

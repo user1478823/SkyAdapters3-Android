@@ -48,6 +48,7 @@ public abstract class RvActivityWithNavDrawer extends RvBase implements RxBackgr
         }
 
         initRv(rvs.get(0));
+        new RxBackground().executeInBackground(this, this);
 
         ToolbarAdapter toolbarAdapter = new ToolbarAdapter(this, getActivityView());
         toggle = toolbarAdapter.buildToolbarWithNavDrawer(

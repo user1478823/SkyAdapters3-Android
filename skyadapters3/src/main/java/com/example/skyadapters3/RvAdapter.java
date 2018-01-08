@@ -15,16 +15,31 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder> {
 
     private Activity a;
     private int customLayoutID;
-    private Class[] activities;
+    //private Class[] activities;
     private int color;
     private Menu menu;
 
+    private Intent[] intents;
 
-    public RvAdapter(final Activity a, Menu menu, Class[] activities, int customLayoutID,
+
+    /*public RvAdapter(final Activity a, Menu menu, Class[] activities, int customLayoutID,
                      RecyclerView.LayoutManager layoutManager, int color, Integer drawerRvID) {
         this.a              = a;
         this.menu           = menu;
         this.activities     = activities;
+        this.customLayoutID = customLayoutID;
+        this.color          = color;
+
+        RecyclerView rv = (RecyclerView) a.findViewById(drawerRvID);
+        rv.setLayoutManager(layoutManager);
+        rv.setAdapter(this);
+    } */
+
+    public RvAdapter(final Activity a, Menu menu, Intent[] intents, int customLayoutID,
+                     RecyclerView.LayoutManager layoutManager, int color, Integer drawerRvID) {
+        this.a              = a;
+        this.menu           = menu;
+        this.intents        = intents;
         this.customLayoutID = customLayoutID;
         this.color          = color;
 
@@ -67,13 +82,23 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (activities[holder.getAdapterPosition()].getSimpleName().contains("Setting")) {
-                    a.startActivityForResult(new Intent(a, activities[holder.getAdapterPosition()]), 0);
-                } else {
-                    a.startActivity(new Intent(a, activities[holder.getAdapterPosition()]));
-                }
+                a.startActivity(intents[holder.getAdapterPosition()]);
             }
         });
+        /*if (intents != null) {
+            a.startActivity(intents[position]);
+        } else {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (activities[holder.getAdapterPosition()].getSimpleName().contains("Setting")) {
+                        a.startActivityForResult(new Intent(a, activities[holder.getAdapterPosition()]), 0);
+                    } else {
+                        a.startActivity(new Intent(a, activities[holder.getAdapterPosition()]));
+                    }
+                }
+            });
+        }*/
     }
 
     @Override

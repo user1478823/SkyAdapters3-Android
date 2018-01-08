@@ -2,6 +2,7 @@ package com.example.skyadapters3;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.widget.DrawerLayout;
@@ -94,7 +95,7 @@ public class ToolbarAdapter {
         return this;
     }
 
-    public ActionBarDrawerToggle buildToolbarWithNavDrawer(int vgID,
+    /*public ActionBarDrawerToggle buildToolbarWithNavDrawer(int vgID,
                                                            Class[] activitiesToLaunch,
                                                            int menuID,
                                                            int customLayoutID,
@@ -107,6 +108,35 @@ public class ToolbarAdapter {
         RvAdapter rvAdapter = new RvAdapter(a, menu,
                 activitiesToLaunch, customLayoutID, layoutManager, drawerItemColor, drawerRvID);
         
+        ActionBarDrawerToggle toggleBtn = null;
+        if (drawerLayout != null) {
+            toggleBtn = new ActionBarDrawerToggle(a, drawerLayout,
+                    R.string.drawer_open, R.string.drawer_closed);
+            drawerLayout.addDrawerListener(toggleBtn);
+            //toggleBtn.syncState();
+        }
+
+        if (toolbar != null) {
+            a.setSupportActionBar(toolbar);
+            a.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        return toggleBtn;
+    } */
+
+    public ActionBarDrawerToggle buildToolbarWithNavDrawer(int vgID,
+                                                           Intent[] activitiesToLaunch,
+                                                           int menuID,
+                                                           int customLayoutID,
+                                                           RecyclerView.LayoutManager layoutManager,
+                                                           int drawerItemColor, Integer drawerRvID){
+
+        Menu menu = new PopupMenu(a, null).getMenu();
+        a.getMenuInflater().inflate(menuID, menu);
+
+        RvAdapter rvAdapter = new RvAdapter(a, menu,
+                activitiesToLaunch, customLayoutID, layoutManager, drawerItemColor, drawerRvID);
+
         ActionBarDrawerToggle toggleBtn = null;
         if (drawerLayout != null) {
             toggleBtn = new ActionBarDrawerToggle(a, drawerLayout,
